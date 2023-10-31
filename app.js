@@ -162,7 +162,7 @@ app.get("/user/tweets/feed/", authenticateToken, async (request, response) => {
 
 // API-4:
 app.get("/user/following/", authenticateToken, async (request, response) => {
-  const { username, userId } = request;
+  const { username, userId } = request.body;
   const getNames = `
   SELECT name FROM follower 
   follower INNER JOIN user on user.user_id = follower.user_id
@@ -174,7 +174,7 @@ app.get("/user/following/", authenticateToken, async (request, response) => {
 
 // API-5
 app.get("/user/followers/", authenticateToken, async (request, response) => {
-  const { username, userId } = request;
+  const { username, userId } = request.body;
   const getFollowingNames = `
     SELECT DISTINCT name FROM follower
     follower INNER JOIN user on user.user_id = follower.user_id
